@@ -1,15 +1,24 @@
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
+#include <vector>
 #include "node.hpp"
 
 class Graph{
 public:
     Graph();
     Graph(char* file);
-    ~Graph();
+    //~Graph();
     Node* getAlpha();
     Node* getOmega();
-    std::vector<Node> getNodes();
+    Node* getNode(std::string node);
+    void display();
+    //std::vector<Node> getNodes();
     
 private:
-    std::vector<Node> graph;
-    
-}
+    //std::vector<Node> graph;
+    std::map<std::string, Node*> graph;
+    std::vector<std::string> split(std::string &s, char delim);
+    std::vector<std::string>& split(std::string &s, char delim, std::vector<std::string> &elems);
+};

@@ -1,7 +1,18 @@
+#import <string>
+#import <vector>
+#import <iostream>
+#import "Graph.hpp"
 
 class Node{
 public:
     Node();
-    Node(std::string name, int deg, std::vector<std::string> pred);
-    ~Node();
-}
+    Node(std::string name, int deg, std::vector<std::string> pred, Graph graph);
+    //~Node();
+    std::string toString();
+    
+private:
+    std::string name;
+    int degree;
+    std::vector<std::string> predecessors;
+    Graph graph;
+};
