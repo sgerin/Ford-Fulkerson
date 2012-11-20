@@ -1,9 +1,15 @@
+#ifndef GRAPH
+#define GRAPH
+
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 #include <vector>
-#include "node.hpp"
+#include <map>
+//#include "node.hpp"
+
+class Node;
 
 class Graph{
 public:
@@ -22,3 +28,6 @@ private:
     std::vector<std::string> split(std::string &s, char delim);
     std::vector<std::string>& split(std::string &s, char delim, std::vector<std::string> &elems);
 };
+
+
+#endif

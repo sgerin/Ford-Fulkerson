@@ -1,3 +1,6 @@
+#ifndef NODE
+#define NODE
+
 #import <string>
 #import <vector>
 #import <iostream>
@@ -6,7 +9,7 @@
 class Node{
 public:
     Node();
-    Node(std::string name, int deg, std::vector<std::string> pred, Graph graph);
+    Node(std::string name, int deg, std::vector<std::string> pred, Graph g);
     //~Node();
     std::string toString();
     
@@ -16,3 +19,5 @@ private:
     std::vector<std::string> predecessors;
     Graph graph;
 };
+
+#endif

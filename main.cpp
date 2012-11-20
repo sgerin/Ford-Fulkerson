@@ -8,10 +8,13 @@ int main(int argc, char **argv)
         Graph* g = new Graph(argv[1]);
         //Ouvrir ou creer argv2 si graph est ok
         //Ecrire dedans
+        g->display();
     }
-    
-    std::cout << "Erreur manque des fichiers" << std::endl;
-    return 1;
-    
+    else
+    {
+        std::cout << "Erreur manque des fichiers" << std::endl;
+        return 1;
+    }
+    return 0;
     
 }

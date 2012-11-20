@@ -33,12 +33,12 @@ Graph::Graph(char* file)
                 std::cout << "Values :";
                 for (it = x.begin() ; it < x.end(); it++)
                 {
-                    if(it == 1)
+                    if(it - x.begin() == 1)//it == 1)
                     {
                         name = *it;
                         //nodes.push_back(*it);
                     }
-                    else if(it == 2)
+                    else if(it - x.begin() == 2)//it == 2)
                     {
                         std::stringstream ss;
                         //int cost;
@@ -46,7 +46,7 @@ Graph::Graph(char* file)
                         ss >> cost;
                         //costs.push_back(cost)
                     }
-                    else if(it == 3)
+                    else if(it - x.begin() == 3)//it == 3)
                     {
                         std::stringstream ss;
                         //int nb;
@@ -123,37 +123,37 @@ std::vector<std::string> Graph::split(std::string &s, char delim)
 }
 
 
-Node* Node::getAlpha()
+Node* Graph::getAlpha()
 {
-    map<std::string, Node*>::iterator it;
+    std::map<std::string, Node*>::iterator it;
     it = graph.find("alpha");
     return it->second;
 }
 
 
-Node* Node::getOmega()
+Node* Graph::getOmega()
 {
-    map<std::string, Node*>::iterator it;
+    std::map<std::string, Node*>::iterator it;
     it = graph.find("omega");
     return it->second;
 }
 
 
-Node* Node::getNode(std::string node)
+Node* Graph::getNode(std::string node)
 {
-    map<std::string, Node*>::iterator it;
+    std::map<std::string, Node*>::iterator it;
     it = graph.find(node);
     if(it != graph.end())
         return it->second;
     return NULL;
 }
 
-void Node::display()
+void Graph::display()
 {
     std::map<std::string, Node*>::iterator it;
     for (it = x.begin() ; it < x.end(); it++)
     {
-        std::cout << it->first << "  " << it->second->display() << std::endl;
+        std::cout << it->first << "  " << it->second->toString() << std::endl;
     }
 
 }
