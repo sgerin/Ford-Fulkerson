@@ -30,6 +30,13 @@ Graph::Graph(char* file)
                 std::vector<std::string> x = split(line, ' ');
                 std::vector<std::string>::iterator it;
                 
+                for (it = x.begin(); it < x.end(); it++)
+                {
+                    std::cout << *it << "  ";
+                }
+                
+                std::cout << std::endl << std::endl << std::endl << std::endl;
+                
                 //std::cout << "Values :";
                 for (it = x.begin() ; it < x.end(); it++)
                 {
@@ -152,7 +159,7 @@ void Graph::display()
 {
     std::map<std::string, Node*>::iterator it;
     
-    for (it = graph.begin(); it < graph.end(); it++)
+    for (it = graph.begin(); it != graph.end(); it++)
     {
         std::cout << it->first << "  " << it->second->toString() << std::endl;
     }
