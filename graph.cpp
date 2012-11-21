@@ -1,5 +1,7 @@
 #include "graph.hpp"
 
+//#define DEBUG
+
 Graph::Graph()
 {
     std::cout << "No file provided" << std::endl;
@@ -30,22 +32,25 @@ Graph::Graph(char* file)
                 std::vector<std::string> x = split(line, ' ');
                 std::vector<std::string>::iterator it;
                 
+
+                #ifdef DEBUG
                 for (it = x.begin(); it < x.end(); it++)
                 {
                     std::cout << *it << "  ";
                 }
                 
                 std::cout << std::endl << std::endl << std::endl << std::endl;
+                #endif
                 
                 //std::cout << "Values :";
                 for (it = x.begin() ; it < x.end(); it++)
                 {
-                    if(it - x.begin() == 1)//it == 1)
+                    if(it - x.begin() == 0)//it == 1)
                     {
                         name = *it;
                         //nodes.push_back(*it);
                     }
-                    else if(it - x.begin() == 2)//it == 2)
+                    else if(it - x.begin() == 1)//it == 2)
                     {
                         std::stringstream ss;
                         //int cost;
@@ -53,7 +58,7 @@ Graph::Graph(char* file)
                         ss >> cost;
                         //costs.push_back(cost)
                     }
-                    else if(it - x.begin() == 3)//it == 3)
+                    else if(it - x.begin() == 2)//it == 3)
                     {
                         std::stringstream ss;
                         //int nb;
