@@ -5,7 +5,7 @@ Node::Node()
     
 }
 
-Node::Node(std::string name, int deg, std::vector<std::string> pred, Graph graph)
+Node::Node(std::string name, int deg, std::vector<std::string> pred, Graph* graph)
 {
     this->name = name;
     this->degree = deg;

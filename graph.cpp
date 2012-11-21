@@ -30,7 +30,7 @@ Graph::Graph(char* file)
                 std::vector<std::string> x = split(line, ' ');
                 std::vector<std::string>::iterator it;
                 
-                std::cout << "Values :";
+                //std::cout << "Values :";
                 for (it = x.begin() ; it < x.end(); it++)
                 {
                     if(it - x.begin() == 1)//it == 1)
@@ -59,13 +59,13 @@ Graph::Graph(char* file)
                         pred.push_back(*it);
                     }
                 }
-                if(pred.size() != nb_pred)
-                {
-                    std::cout << "Erreur nombre de sommets precedents != liste des sommets precedents" << std::endl;
-                    exit(0);
-                }
+                //if(pred.size() != nb_pred)
+                //{
+                //    std::cout << "Erreur nombre de sommets precedents != liste des sommets precedents" << std::endl;
+                //    exit(0);
+                //}
                 node = new Node(name, cost, pred, this);
-                graph.insert(pair<std::string, Node*>(name, node));
+                graph.insert(std::pair<std::string, Node*>(name, node));
                 //std::map<std::string, Node*>::iterator ;
                 name.clear();
                 cost = 0;
@@ -151,7 +151,8 @@ Node* Graph::getNode(std::string node)
 void Graph::display()
 {
     std::map<std::string, Node*>::iterator it;
-    for (it = x.begin() ; it < x.end(); it++)
+    
+    for (it = graph.begin(); it < graph.end(); it++)
     {
         std::cout << it->first << "  " << it->second->toString() << std::endl;
     }
