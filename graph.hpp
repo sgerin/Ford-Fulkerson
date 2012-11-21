@@ -25,6 +25,9 @@ private:
     std::map<std::string, Node*> graph;
     std::vector<std::string> split(std::string &s, char delim);
     std::vector<std::string>& split(std::string &s, char delim, std::vector<std::string> &elems);
+    void finish();
+    void buildAlpha();
+    void buildOmega();
 };
 
 

@@ -63,23 +63,22 @@ Graph::Graph(char* file)
                         pred.push_back(*it);
                     }
                 }
-                //if(pred.size() != nb_pred)
-                //{
-                //    std::cout << "Erreur nombre de sommets precedents != liste des sommets precedents" << std::endl;
-                //    exit(0);
-                //}
-                node = new Node(name, cost, pred, this);
+                node = new Node(name, cost, pred, nb_pred, this);
                 graph.insert(std::pair<std::string, Node*>(name, node));
                 name.clear();
                 cost = 0;
                 pred.clear();                
             }
+            
+
         // then create alpha & omega nodes
         // alpha node will have a cost of 0 and be the common predecessor of all node that didn't have any
         // omega node will have a cost of 0 and be the common successor of all node that didn't have any
 
         }
         text.close();
+        
+        finish();
     }
     else
     {
@@ -144,4 +143,29 @@ void Graph::display()
         std::cout << it->first << "  " << it->second->toString() << std::endl;
     }
 
+}
+
+void Graph::finish()
+{
+    std::map<std::string, Node*>::iterator it;
+    
+    for (it = graph.begin(); it != graph.end(); it++)
+    {
+        it->second->finish();
+    }
+    
+    buildAlpha();
+    buildOmega();
+}
+
+
+void Graph::buildAlpha()
+{
+    
+}
+
+
+void Graph::buildOmega()
+{
+    
 }
