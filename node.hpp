@@ -5,15 +5,16 @@
 #import <vector>
 #include <sstream>
 #import <iostream>
-
-class Graph;
+#import "graph.hpp"
 
 class Node{
 public:
     Node();
-    Node(std::string name, int deg, std::vector<std::string> pred, Graph* g);
+    Node(std::string name, int deg, std::vector<std::string> pred, int nbPred, Graph* g);
     //~Node();
-    void finish();
+    void buildPredecessors();
+    void addSuccessor(Node* node);
+    //void buildSuccessors();
     std::string toString();
     
 private:

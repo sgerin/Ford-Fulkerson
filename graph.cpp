@@ -151,8 +151,13 @@ void Graph::finish()
     
     for (it = graph.begin(); it != graph.end(); it++)
     {
-        it->second->finish();
+        it->second->buildPredecessors();
     }
+    
+    //for (it = graph.begin(); it != graph.end(); it++)
+    //{
+    //    it->second->buildSuccessors();
+    //}
     
     buildAlpha();
     buildOmega();
