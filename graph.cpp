@@ -9,10 +9,6 @@ Graph::Graph()
 
 Graph::Graph(char* file)
 {
-    //std::vector<std::string> nodes;
-    //std::vector<int> costs;
-    //std::vector<int> nb_pred;
-    //std::vector<std::vector<std::string>> predecessors;
     Node* node = NULL;
     std::ifstream text;
     text.open(file);
@@ -53,18 +49,14 @@ Graph::Graph(char* file)
                     else if(it - x.begin() == 1)//it == 2)
                     {
                         std::stringstream ss;
-                        //int cost;
                         ss << *it;
                         ss >> cost;
-                        //costs.push_back(cost)
                     }
-                    else if(it - x.begin() == 2)//it == 3)
+                    else if(it - x.begin() == 2)
                     {
                         std::stringstream ss;
-                        //int nb;
                         ss << *it;
                         ss >> nb_pred;
-                        //nb_pred.push_back(nb);
                     }
                     else
                     {
@@ -78,26 +70,10 @@ Graph::Graph(char* file)
                 //}
                 node = new Node(name, cost, pred, this);
                 graph.insert(std::pair<std::string, Node*>(name, node));
-                //std::map<std::string, Node*>::iterator ;
                 name.clear();
                 cost = 0;
-                pred.clear();
-                // std::cout << " " << *it << std::endl;
-                // std::cout << std::endl;
-                
-                // iterator on x
-                // 1rst value -> name
-                // 2nd -> cost
-                // 3rd -> nb of predecessors
-                // until end -> name of predecessors
+                pred.clear();                
             }
-        //iss >> ;
-        // break down line into differents strings
-        // you should create a vector of string for node name
-        // + a vector of int for node cost
-        // + a vector of vector of string to know each node predecessors
-        // build all the node with their cost then add their predecessors -> successors and degree will be deduced
-        
         // then create alpha & omega nodes
         // alpha node will have a cost of 0 and be the common predecessor of all node that didn't have any
         // omega node will have a cost of 0 and be the common successor of all node that didn't have any
@@ -108,9 +84,8 @@ Graph::Graph(char* file)
     else
     {
         std::cout << "File coudn't be opened" << std::endl;
-        //return 1;
+        exit(0);
     }
-    //return 0;
 }
 
 

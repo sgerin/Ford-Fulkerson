@@ -6,8 +6,6 @@ int main(int argc, char **argv)
     if(argc == 2)
     {
         Graph* g = new Graph(argv[1]);
-        //Ouvrir ou creer argv2 si graph est ok
-        //Ecrire dedans
         g->display();
     }
     else

@@ -1,16 +1,21 @@
+CXX=g++
+CLANG=clang
+LLVM=llvm
+LDFLAGS=-Wall -ggdb -Iinc/ 
+
 all: graph
 
 graph: graph.o main.o node.o
-	g++ graph.o main.o node.o -o graph
+	$(CXX) graph.o main.o node.o -o graph $(LDFLAGS)
 
 main.o: main.cpp
-	g++ -c main.cpp
+	$(CXX) -c main.cpp
 
 graph.o: graph.cpp
-	g++ -c graph.cpp
+	$(CXX) -c graph.cpp
 
 node.o: node.cpp
-	g++ -c node.cpp
+	$(CXX) -c node.cpp
 
 clean:
 	rm -rf *.o graph

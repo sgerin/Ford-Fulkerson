@@ -18,14 +18,16 @@ std::string Node::toString()
     std::string s = "Node : ";
     s += name;
     s += " degree : ";
-    s += degree;
-    s += "list of predecessors : ";
+    std::stringstream ss;
+    ss << degree;
+    s += ss.str();;
+    s += " list of predecessors : ";
     std::vector<std::string>::iterator it;
     
     for ( it=predecessors.begin() ; it < predecessors.end(); it++ )
     {
-        s += *it;
         s += ", ";
+        s += *it;
     }
     s += ".";
     return s;
