@@ -12,17 +12,20 @@ class Graph;
 class Node{
 public:
     Node();
+    Node(std::string name, Graph* g);
     Node(std::string name, int deg, std::vector<std::string> pred, int nbPred, Graph* g);
     //~Node();
     void buildPredecessors();
     void addSuccessor(Node* node);
+    //void addSuccessors(std::vector<std::string> succlist);
+    void addPredecessors(std::vector<std::string> predlist);
     //void buildSuccessors();
     std::string toString();
     std::string getName();
     int getNbPredecessors();
     int getNbSuccessors();
-    void alpha();
-    void omega();
+    //Node* alpha();
+    //Node* omega();
     
 private:
     std::string name;

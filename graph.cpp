@@ -136,7 +136,7 @@ void Graph::display()
     
     for (it = graph.begin(); it != graph.end(); it++)
     {
-        //std::cout << it->first << "  " << it->second->toString() << std::endl;
+        std::cout << it->first << "  " << it->second->toString() << std::endl;
     }
 
 }
@@ -188,37 +188,38 @@ void Graph::addOmega(Node* node)
 
 void Graph::buildAlphaOmega()
 {
-    std::vector<Node*> nopred;
-    std::vector<Node*> nosucc;
+    
+    std:: cout << std::endl << std::endl;
+    Node* alpha = new Node("alpha", this);
+    Node* omega = new Node("omega", this);
+    
+    graph.insert(std::pair<std::string, Node*>("alpha", alpha));
+    graph.insert(std::pair<std::string, Node*>("omega", omega));
+    
+    std::vector<std::string> only_alpha;
+    only_alpha.push_back("alpha");
+    std::vector<std::string> nosucc;
     std::map<std::string, Node*>::iterator it;
     for (it = graph.begin(); it != graph.end(); it++)
     {
-        if(it->second->getNbPredecessors() == 0)
+        if(it->second->getNbPredecessors() == 0 && it->second->getName().compare("alpha") != 0 && it->second->getName().compare("omega") != 0)
         {
-            nopred.push_back(it->second);
+            //nopred.push_back(it->second->getName());
+            it->second->addPredecessors(only_alpha);
         }
-        if(it->second->getNbSuccessors() == 0)
+        if(it->second->getNbSuccessors() == 0 && it->second->getName().compare("alpha") != 0 && it->second->getName().compare("omega") != 0)
         {
-            nosucc.push_back(it->second);
+            nosucc.push_back(it->second->getName());
         }
     }
     
-    std::vector<Node*>::iterator imperator;
-    std:: cout << std::endl << std::endl;
-    for (imperator = nopred.begin(); imperator < nopred.end(); imperator++)
-    {
-        std::cout << (*imperator)->getName() << "  ";
-    }
+    omega->addPredecessors(nosucc);
+
     
-    std:: cout << std::endl << std::endl;
-    
-    
-    for (imperator = nosucc.begin(); imperator < nosucc.end(); imperator++)
-    {
-        std::cout << (*imperator)->getName() << "  ";
-    }
-    
-    std:: cout << std::endl << std::endl;
+
+    //alpha->addSuccessors(nopred);
+    // alpha -> lister les successeurs
+    // omega -> 
     //Node* alpha = new Node("alpha", 0, NULL, 0, this);
     //graph.insert(std::pair<std::string, Node*>("alpha", alpha));
     // then create alpha & omega nodes

@@ -6,12 +6,23 @@ Node::Node()
     
 }
 
+Node::Node(std::string name, Graph* g)
+{
+    this->name = name;
+    this->degree = 0;
+    this->pred = 0;
+    this->succ = 0;
+    this->graph = g;
+}
+
+
 Node::Node(std::string name, int deg, std::vector<std::string> predlist, int nb_pred, Graph* graph)
 {
     this->name = name;
     this->degree = deg;
     this->pred_names = predlist;
     this->pred = nb_pred;
+    this->succ = 0;
     this->graph = graph;
     if(predlist.size() != nb_pred)
     {
@@ -29,11 +40,19 @@ void Node::buildPredecessors()
         ++pred;
         graph->getNode(*it)->addSuccessor(this);
     }
-
-    
-
 }
 
+
+void Node::addPredecessors(std::vector<std::string> predlist)
+{
+    pred_names = predlist;
+    buildPredecessors();
+}
+
+/*void Node::addSuccessors(std::vector<std::string> succlist)
+{
+    succ
+}*/
 
 void Node::addSuccessor(Node* node)
 {
@@ -106,7 +125,13 @@ int Node::getNbSuccessors()
 }
 
 
-void Node::alpha()
+/*Node* Node::alpha(std::vector<Node*> nopred)
 {
+    
     //graph->getAlpha()->
 }
+
+Node* Node::omega(std::vector<Node*> nosucc)
+{
+    
+}*/
