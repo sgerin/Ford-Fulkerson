@@ -24,6 +24,8 @@ public:
     std::string getName();
     int getNbPredecessors();
     int getNbSuccessors();
+    std::vector<Node*> getSuccessors();
+    std::vector<Node*> getPredecessors();
     //Node* alpha();
     //Node* omega();
     

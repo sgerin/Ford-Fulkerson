@@ -125,6 +125,17 @@ int Node::getNbSuccessors()
 }
 
 
+std::vector<Node*> Node::getSuccessors()
+{
+    return this->successors;
+}
+
+
+std::vector<Node*> Node::getPredecessors()
+{
+    return this->predecessors;
+}
+
 /*Node* Node::alpha(std::vector<Node*> nopred)
 {
     

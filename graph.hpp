@@ -19,17 +19,19 @@ public:
     Node* getAlpha();
     Node* getOmega();
     Node* getNode(std::string node);
+    void finish();
     void display();
     
 private:
     std::map<std::string, Node*> graph;
+    std::vector<std::vector<Node*>> lists;
     std::vector<std::string> split(std::string &s, char delim);
     std::vector<std::string>& split(std::string &s, char delim, std::vector<std::string> &elems);
-    void finish();
     void buildAlphaOmega();
     //void buildOmega();
     void addAlpha(Node* node);
     void addOmega(Node* node);
+    void leveling();
 };
 
 

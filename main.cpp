@@ -6,6 +6,7 @@ int main(int argc, char **argv)
     if(argc == 2)
     {
         Graph* g = new Graph(argv[1]);
+        g->finish();
         g->display();
     }
     else

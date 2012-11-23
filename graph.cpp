@@ -73,8 +73,6 @@ Graph::Graph(char* file)
 
         }
         text.close();
-        
-        finish();
     }
     else
     {
@@ -156,6 +154,11 @@ void Graph::finish()
     //}
     
     buildAlphaOmega();
+    leveling();
+    
+    //CLASSER LES NOEUDS PAR NIVEAU
+    
+    
     //buildOmega();
     //new Node(nom, cout, listpredstring, nbpred, this);
     
@@ -174,6 +177,28 @@ void Graph::finish()
     }*/
     //
 }
+
+void Graph::leveling()
+{
+    std::vector<Node*> done;
+    std::vector<Node*>;
+    std::map<std::string, Node*>::iterator it;
+    for (it = graph.begin(); it != graph.end(); it++)
+    {
+        std::vector<Node*>::iterator imp;
+        for(imp = it->second->getSuccessors().begin(); imp < it->second->getSuccessors().end(); imp++)
+        {
+            if(imp->getNbPred == 0 && std::find(done.begin(), done.end(), *imp)!=done.end())
+            {
+                //mettre *imp dans un vector
+                //
+            }
+        }
+    }
+    
+}
+
+//std::find(done.begin(), done.end(), *imp)!=done.end()
 
 void Graph::addAlpha(Node* node)
 {
@@ -214,8 +239,6 @@ void Graph::buildAlphaOmega()
     }
     
     omega->addPredecessors(nosucc);
-
-    
 
     //alpha->addSuccessors(nopred);
     // alpha -> lister les successeurs
