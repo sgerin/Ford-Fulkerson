@@ -1,5 +1,5 @@
-#ifndef GRAPH
-#define GRAPH
+#ifndef GRAPH_H
+#define GRAPH_H
 
 #include <iostream>
 #include <fstream>
@@ -9,7 +9,7 @@
 #include <map>
 #include "node.hpp"
 
-class Node;
+//class Node;
 
 class Graph{
 public:
@@ -26,8 +26,10 @@ private:
     std::vector<std::string> split(std::string &s, char delim);
     std::vector<std::string>& split(std::string &s, char delim, std::vector<std::string> &elems);
     void finish();
-    void buildAlpha();
-    void buildOmega();
+    void buildAlphaOmega();
+    //void buildOmega();
+    void addAlpha(Node* node);
+    void addOmega(Node* node);
 };
 
 

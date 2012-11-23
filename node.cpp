@@ -1,4 +1,5 @@
 #include "node.hpp"
+#include "graph.hpp"
 
 Node::Node()
 {
@@ -57,15 +58,55 @@ std::string Node::toString()
     ss << degree;
     s += ss.str();;
     s += " list of predecessors : ";
-    std::vector<std::string>::iterator it;
+    std::vector<Node*>::iterator it;
     
-    for ( it=pred_names.begin() ; it < pred_names.end(); it++ )
+    /*for ( it=pred_names.begin() ; it < pred_names.end(); it++ )
     {
         s += ", ";
         s += *it;
     }
+    s += ".";*/
+    
+    for ( it=predecessors.begin() ; it < predecessors.end(); it++ )
+    {
+        s += (*it)->getName();
+        s += ", ";
+        //s += it->toString();
+    }
     s += ".";
+    
+    s += "list of successors : " ;
+    
+    for ( it=successors.begin() ; it < successors.end(); it++ )
+    {
+        s += (*it)->getName();
+        s += ", ";
+        //s += it->toString;
+    }
+    s += ".";
+    
     return s;
 }
 
 
+std::string Node::getName()
+{
+    return name;
+}
+
+
+int Node::getNbPredecessors()
+{
+    return pred;
+}
+
+int Node::getNbSuccessors()
+{
+    return succ;
+}
+
+
+void Node::alpha()
+{
+    //graph->getAlpha()->
+}

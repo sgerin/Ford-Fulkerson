@@ -1,11 +1,13 @@
-#ifndef NODE
-#define NODE
+#ifndef NODE_H
+#define NODE_H
 
-#import <string>
-#import <vector>
+#include <string>
+#include <vector>
 #include <sstream>
-#import <iostream>
-#import "graph.hpp"
+#include <iostream>
+//#include "graph.hpp"
+
+class Graph;
 
 class Node{
 public:
@@ -16,6 +18,11 @@ public:
     void addSuccessor(Node* node);
     //void buildSuccessors();
     std::string toString();
+    std::string getName();
+    int getNbPredecessors();
+    int getNbSuccessors();
+    void alpha();
+    void omega();
     
 private:
     std::string name;

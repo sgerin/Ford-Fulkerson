@@ -71,10 +71,6 @@ Graph::Graph(char* file)
             }
             
 
-        // then create alpha & omega nodes
-        // alpha node will have a cost of 0 and be the common predecessor of all node that didn't have any
-        // omega node will have a cost of 0 and be the common successor of all node that didn't have any
-
         }
         text.close();
         
@@ -140,7 +136,7 @@ void Graph::display()
     
     for (it = graph.begin(); it != graph.end(); it++)
     {
-        std::cout << it->first << "  " << it->second->toString() << std::endl;
+        //std::cout << it->first << "  " << it->second->toString() << std::endl;
     }
 
 }
@@ -159,18 +155,89 @@ void Graph::finish()
     //    it->second->buildSuccessors();
     //}
     
-    buildAlpha();
-    buildOmega();
+    buildAlphaOmega();
+    //buildOmega();
+    //new Node(nom, cout, listpredstring, nbpred, this);
+    
+    /*std::map<std::string, Node*>::iterator it;
+    
+    for (it = graph.begin(); it != graph.end(); it++)
+    {
+        if(it->second->getNbPred == 0)
+        {
+            addAlpha(it->second);
+        }
+        if(it->second->getNbSucc == 0)
+        {
+            addOmega(it->second);
+        }
+    }*/
+    //
 }
 
+void Graph::addAlpha(Node* node)
+{
+    
+}
 
-void Graph::buildAlpha()
+void Graph::addOmega(Node* node)
 {
     
 }
 
 
-void Graph::buildOmega()
+void Graph::buildAlphaOmega()
 {
+    std::vector<Node*> nopred;
+    std::vector<Node*> nosucc;
+    std::map<std::string, Node*>::iterator it;
+    for (it = graph.begin(); it != graph.end(); it++)
+    {
+        if(it->second->getNbPredecessors() == 0)
+        {
+            nopred.push_back(it->second);
+        }
+        if(it->second->getNbSuccessors() == 0)
+        {
+            nosucc.push_back(it->second);
+        }
+    }
     
+    std::vector<Node*>::iterator imperator;
+    std:: cout << std::endl << std::endl;
+    for (imperator = nopred.begin(); imperator < nopred.end(); imperator++)
+    {
+        std::cout << (*imperator)->getName() << "  ";
+    }
+    
+    std:: cout << std::endl << std::endl;
+    
+    
+    for (imperator = nosucc.begin(); imperator < nosucc.end(); imperator++)
+    {
+        std::cout << (*imperator)->getName() << "  ";
+    }
+    
+    std:: cout << std::endl << std::endl;
+    //Node* alpha = new Node("alpha", 0, NULL, 0, this);
+    //graph.insert(std::pair<std::string, Node*>("alpha", alpha));
+    // then create alpha & omega nodes
+    // alpha node will have a cost of 0 and be the common predecessor of all node that didn't have any
+    // omega node will have a cost of 0 and be the common successor of all node that didn't have any
 }
+
+
+/*void Graph::buildOmega()
+{
+    std::vector<std::string> x;
+    for (it = graph.begin(); it != graph.end(); it++)
+    {
+        if(it->getNbPred() == 0)
+            x.push_back(it->getName());
+    }
+    Node* omega = new Node("omega", 0, NULL, 0, this);
+    // then create alpha & omega nodes
+    // alpha node will have a cost of 0 and be the common predecessor of all node that didn't have any
+    // omega node will have a cost of 0 and be the common successor of all node that didn't have any
+    graph.insert(std::pair<std::string, Node*>("omega", omega));
+}*/
