@@ -5,7 +5,6 @@
 #include <vector>
 #include <sstream>
 #include <iostream>
-//#include "graph.hpp"
 
 class Graph;
 
@@ -13,13 +12,10 @@ class Node{
 public:
     Node();
     Node(std::string name, Graph* g);
-    Node(std::string name, int deg, std::vector<std::string> pred, int nbPred, Graph* g);
-    //~Node();
+    Node(std::string name, int deg, std::vector<std::string> pred, unsigned int nbPred, Graph* g);
     void buildPredecessors();
     void addSuccessor(Node* node);
-    //void addSuccessors(std::vector<std::string> succlist);
     void addPredecessors(std::vector<std::string> predlist);
-    //void buildSuccessors();
     std::string toString();
     std::string getName();
     int getNbPredecessors();
@@ -30,18 +26,32 @@ public:
     int higherLevel();
     void setLevel(int l);
     int getLevel();
-    //Node* alpha();
-    //Node* omega();
+    int getDegree();
+    int getEarlyDate();
+    int getLateDate();
+    void setEarlyDate(int i);
+    void setLateDate(int i);
+    int getPredecessorsEarlyDate();
+    int getSuccessorsLateDate();
+    int getMargin();
+    void setMargin(int i);
+    bool isCritical();
+    void setCritical(bool b);
+
     
 private:
     std::string name;
     int degree;
     int level;
+    int earlyDate;
+    int lateDate;
+    int margin;
+    bool critical;
     std::vector<std::string> pred_names;
     std::vector<Node*> predecessors;
     std::vector<Node*> successors;
-    int pred;
-    int succ;
+    unsigned int pred;
+    unsigned int succ;
     Graph* graph;
 };
 

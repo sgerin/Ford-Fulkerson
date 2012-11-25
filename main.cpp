@@ -7,7 +7,24 @@ int main(int argc, char **argv)
     {
         Graph* g = new Graph(argv[1]);
         g->finish();
-        g->display();
+        g->displayGraph();
+        std::cout << g->display() << std::endl;
+    }
+    else if(argc == 3)
+    {
+        Graph* g = new Graph(argv[1]);
+        g->finish();
+        std::ofstream output(argv[2]);
+        if(output)
+        {
+            output << g->display() << std::endl;
+            output.close();
+        }
+        else
+        {
+            std::cerr << "Failure opening " << argv[1] << '\n';
+            return -1;
+        }
     }
     else
     {

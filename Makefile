@@ -18,5 +18,4 @@ node.o: node.cpp
 	$(CXX) -c node.cpp $(LDFLAGS)
 
 clean:
-	rm -rf *.o graph
-	
+	rm -rf *.o *.png *.dot graph 	

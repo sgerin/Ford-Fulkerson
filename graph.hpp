@@ -10,30 +10,28 @@
 #include <algorithm>
 #include "node.hpp"
 
-//class Node;
 
 class Graph{
 public:
     Graph();
     Graph(char* file);
-    //~Graph();
     Node* getAlpha();
     Node* getOmega();
     Node* getNode(std::string node);
     void finish();
-    void display();
+    std::string display();
+    void displayGraph();
     
 private:
     std::map<std::string, Node*> graph;
-    //std::vector<std::vector<Node*>> lists;
     std::vector<std::string> split(std::string &s, char delim);
     std::vector<std::string>& split(std::string &s, char delim, std::vector<std::string> &elems);
     void buildAlphaOmega();
-    //void buildOmega();
     int globalHigherLevel();
-    void addAlpha(Node* node);
-    void addOmega(Node* node);
     void leveling();
+    void earlyDate();
+    void lateDate();
+    void margin();
 };
 
 
