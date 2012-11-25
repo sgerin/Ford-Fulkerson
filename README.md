@@ -1,5 +1,7 @@
 #TP1 de recherche opérationnelle
 
+*Antoine Bulliffon, Silouane Gerin*
+
 ##Execution
 - make
 - ./graph input output
