@@ -63,6 +63,7 @@ Graph::Graph(char* file)
                         pred.push_back(*it);
                     }
                 }
+                std::cout << name << nb_pred << std::endl;
                 node = new Node(name, cost, pred, nb_pred, this);
                 graph.insert(std::pair<std::string, Node*>(name, node));
                 name.clear();
@@ -181,24 +182,196 @@ void Graph::finish()
 void Graph::leveling()
 {
     std::vector<Node*> done;
-    std::vector<Node*>;
     std::map<std::string, Node*>::iterator it;
-    for (it = graph.begin(); it != graph.end(); it++)
+    std::vector<Node*>::iterator love;
+    // mettre alpha dans la liste de vectors !
+    //decrementer le nb_pred de tout les successeurs d'alpha
+    done.push_back(getAlpha());
+    for (love = getAlpha()->getSuccessors().begin(); love < getAlpha()->getSuccessors().end(); love++)
     {
-        std::vector<Node*>::iterator imp;
+        //love->setLevel(love->getLevel()-1);
+        (*love)->setNbPredecessors((*love)->getNbPredecessors()-1);
+    }
+    // change de vector
+    done.push_back(getOmega());
+    std::vector<Node*>::iterator imp;
+
+    
+    /*for (it = graph.begin(); it != graph.end(); it++)
+    {
         for(imp = it->second->getSuccessors().begin(); imp < it->second->getSuccessors().end(); imp++)
         {
-            if(imp->getNbPred == 0 && std::find(done.begin(), done.end(), *imp)!=done.end())
+            std::cout << "meditation transcendantale " << (*imp)->getName() << std::endl;
+            std::cout << "MAIS OUIII" << (*imp)->getName() << std::endl;
+            if((*imp)->getName() != "omega" && (*imp)->getName() != "alpha")
             {
+                std::cout << "GENTLE" << (*imp)->getName() << std::endl;
+            }
+            if((*imp)->getName() != "omega" && (*imp)->getName() != "alpha")
+            {
+                if((*imp)->getNbPredecessors() == 0 && std::find(done.begin(), done.end(), *imp)==done.end())
+                {
+                std::cout << "JUGULAIRE" << std::endl;
+                (*imp)->setLevel((*imp)->higherLevel()+1);
+                std::cout << "BLLAA " << (*imp)->getName() <<std::endl;
+                std::cout << getNode((*imp)->getName())->getName() << std::endl;
+                //done.push_back(getNode("a"));
+                //std::cout << "BLAAAh" << std::endl;
+                done.push_back(*imp);
+                //done.push_back(getNode("a"));
+                //LA LIGNE CI DESSUS PLANTE
+                for (love = (*imp)->getSuccessors().begin(); love < (*imp)->getSuccessors().end(); love++)
+                {
+                    (*love)->setNbPredecessors((*love)->getNbPredecessors()-1);
+                }
+                std::cout << "FEOIHE" << std::endl;
                 //mettre *imp dans un vector
-                //
+                //mettre *imp dans done pour ne pas le repasser
+                //decrementer le nb_pred de tout les noeuds successeurs
+                }
+            }
+            std::cout << "crayon titi " << (*imp)->getName() << std::endl;
+        }
+    }*/
+    
+    
+    for (it = graph.begin(); it != graph.end(); it++)
+    {
+        std::cout << "MC Salo  :  " << it->second->getNbPredecessors() << "  " << it->second->getName() << std::endl;
+        std::cout << "PREDECESSEURS DE " << it->second->getName() << "  : ";
+        for (love = it->second->getPredecessors().begin(); love < it->second->getPredecessors().end(); love++)
+        {
+            std::cout << (*love)->getName() << ", ";
+        }
+        
+        std::cout << std::endl;
+    }
+    
+    
+    /*while (done.size() != graph.size())
+    {
+        for (it = graph.begin(); it != graph.end(); it++)
+        {
+        //if(it->second->getName() != "omega" && it->second->getName() != "alpha")
+        //{
+            std::cout << "MC Salo  :  " << it->second->getNbPredecessors() << "  " << it->second->getName() << std::endl;
+            if(it->second->getNbPredecessors() == 0)
+            {
+                std::cout << "Cadillac  :  " << it->second->getNbPredecessors() << "  " << it->second->getName() << std::endl;
+            }
+            if(std::find(done.begin(), done.end(), it->second)==done.end())
+            {
+                std::cout << "Pop Hip !!" << std::endl;
+            }
+            if(it->second->getNbPredecessors() == 0 && std::find(done.begin(), done.end(), it->second)==done.end())
+            {
+                it->second->setLevel(it->second->higherLevel()+1);
+                std::cout << getNode(it->second->getName())->getName() << std::endl;
+                //done.push_back(getNode("a"));
+                //std::cout << "BLAAAh" << std::endl;
+                done.push_back(it->second);
+                //done.push_back(getNode("a"));
+                //LA LIGNE CI DESSUS PLANTE
+                for (love = it->second->getSuccessors().begin(); love < it->second->getSuccessors().end(); love++)
+                {
+                    (*love)->setNbPredecessors((*love)->getNbPredecessors()-1);
+                }
+                std::cout << "FEOIHE" << std::endl;
+                //mettre *imp dans un vector
+                //mettre *imp dans done pour ne pas le repasser
+                //decrementer le nb_pred de tout les noeuds successeurs
+            }
+        //}
+        }
+    }*/
+    
+    getOmega()->setLevel(this->globalHigherLevel() + 1);
+}
+
+
+/*void Graph::leveling()
+{
+    std::map<std::string, Node*>::iterator titi;
+    std::vector<Node*> done;
+    for (titi = graph.begin(); titi != graph.end(); titi++)
+    {
+        done.push_back(titi->second);
+        std::cout << titi->second->getName() << " : ";
+        std::vector<Node*>::iterator imp;
+        for(imp = titi->second->getSuccessors().begin(); imp < titi->second->getSuccessors().end(); imp++)
+        {
+            std::cout << (*imp)->getName() << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << graph.size() << std::endl;
+
+    std::map<std::string, Node*>::iterator it;
+    std::vector<Node*>::iterator imp;
+    std::vector<std::string> done;
+    done.push_back(getAlpha()->getName());
+    done.push_back(getOmega()->getName());
+    for (it = graph.begin(); it != graph.end(); it++)
+    {
+        std::cout << "Number of successors for node " << it->second->getName() << "  :  " << it->second->getSuccessors().size() << std::endl;
+        done.push_back(it->second->getName());
+        for(imp = it->second->getSuccessors().begin(); imp <= it->second->getSuccessors().end(); imp++)
+        {
+            std::cout << "Des nouuuu" << std::endl;
+            if(*imp != NULL)
+            {
+                std::cout << "Gargamel :  " << *imp << std::endl;
+                if(std::find(done.begin(), done.end(), (*imp)->getName())==done.end())
+                {
+                    std::cout << "ah bah oui  " << (*imp)->getName() << std::endl;
+                    done.push_back((*imp)->getName());
+                    std::cout << "biiites" << std::endl;
+                }
             }
         }
     }
     
+    std::vector<std::string>::iterator imp2;
+
+    for (imp2 = done.begin(); imp2 < done.end(); ++imp2)
+    {
+        //std::cout << "OK " << std::endl;
+        std::cout << *imp2 << std::endl;
+    }
+    
+    std::cout << std::endl << std::endl;
+    
+    std::map<std::string, Node*>::iterator fada;
+    for (fada = graph.begin(); fada != graph.end(); fada++)
+    {
+        if(std::find(done.begin(), done.end(), fada->second->getName())!=done.end())
+           std::cout << "teeeest" << std::endl;
+    }
+
+    
+}*/
+
+
+
+// tu prend un noeud dans ta map
+// tu parcours tout ses successeurs
+// si un de ses successeurs a tout ses precedents rangés dans les vectors et s'il n'a pas déjà été rangé dans un vector
+// range dans un vector
+// le mettre dans done pour ne pas le reranger une deuxieme fois
+// decrementer le nb_pred de tout les noeuds successeurs
+
+int Graph::globalHigherLevel()
+{
+    std::map<std::string, Node*>::iterator it;
+    int love = 0;
+    for (it = graph.begin(); it != graph.end(); it++)
+    {
+        if(love < it->second->getLevel())
+            love = it->second->getLevel();
+    }
+    return love;
 }
 
-//std::find(done.begin(), done.end(), *imp)!=done.end()
 
 void Graph::addAlpha(Node* node)
 {
@@ -239,7 +412,6 @@ void Graph::buildAlphaOmega()
     }
     
     omega->addPredecessors(nosucc);
-
     //alpha->addSuccessors(nopred);
     // alpha -> lister les successeurs
     // omega -> 

@@ -24,14 +24,19 @@ public:
     std::string getName();
     int getNbPredecessors();
     int getNbSuccessors();
+    void setNbPredecessors(int n);
     std::vector<Node*> getSuccessors();
     std::vector<Node*> getPredecessors();
+    int higherLevel();
+    void setLevel(int l);
+    int getLevel();
     //Node* alpha();
     //Node* omega();
     
 private:
     std::string name;
     int degree;
+    int level;
     std::vector<std::string> pred_names;
     std::vector<Node*> predecessors;
     std::vector<Node*> successors;

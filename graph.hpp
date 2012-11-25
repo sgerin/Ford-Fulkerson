@@ -7,6 +7,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <algorithm>
 #include "node.hpp"
 
 //class Node;
@@ -24,11 +25,12 @@ public:
     
 private:
     std::map<std::string, Node*> graph;
-    std::vector<std::vector<Node*>> lists;
+    //std::vector<std::vector<Node*>> lists;
     std::vector<std::string> split(std::string &s, char delim);
     std::vector<std::string>& split(std::string &s, char delim, std::vector<std::string> &elems);
     void buildAlphaOmega();
     //void buildOmega();
+    int globalHigherLevel();
     void addAlpha(Node* node);
     void addOmega(Node* node);
     void leveling();

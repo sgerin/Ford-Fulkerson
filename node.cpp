@@ -13,6 +13,7 @@ Node::Node(std::string name, Graph* g)
     this->pred = 0;
     this->succ = 0;
     this->graph = g;
+    this->level = 0;
 }
 
 
@@ -23,6 +24,7 @@ Node::Node(std::string name, int deg, std::vector<std::string> predlist, int nb_
     this->pred_names = predlist;
     this->pred = nb_pred;
     this->succ = 0;
+    this->level = 0;
     this->graph = graph;
     if(predlist.size() != nb_pred)
     {
@@ -102,9 +104,25 @@ std::string Node::toString()
         s += ", ";
         //s += it->toString;
     }
-    s += ".";
-    
+
+    s += " LEVEL ";
+    std::stringstream st;
+    st << level;
+    s += st.str();
     return s;
+}
+
+
+int Node::higherLevel()
+{
+    std::vector<Node*>::iterator it;
+    int love = 0;
+    for ( it=successors.begin() ; it < successors.end(); it++ )
+    {
+        if(love < (*it)->getLevel())
+            love = (*it)->getLevel();
+    }
+    return love;
 }
 
 
@@ -122,6 +140,21 @@ int Node::getNbPredecessors()
 int Node::getNbSuccessors()
 {
     return succ;
+}
+
+int Node::getLevel()
+{
+    return level;
+}
+
+void Node::setLevel(int l)
+{
+    level = l;
+}
+
+void Node::setNbPredecessors(int n)
+{
+    pred = n;
 }
 
 
