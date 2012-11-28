@@ -7,11 +7,11 @@ Graph::Graph()
     std::cout << "No file provided" << std::endl;
 }
 
-Graph::Graph(char* file)
+Graph::Graph(char* nodes, char* res)
 {
     Node* node = NULL;
     std::ifstream text;
-    text.open(file);
+    text.open(nodes);
     if(text.is_open())
     {
         while(text.good())

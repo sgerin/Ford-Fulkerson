@@ -76,6 +76,9 @@ std::string Node::toString()
     std::stringstream ss;
     ss << degree;
     s += ss.str();;
+    ss.str("");
+    ss.clear();
+    
     s += " List of predecessors : ";
     std::vector<Node*>::iterator it;
     
@@ -94,29 +97,38 @@ std::string Node::toString()
     }
 
     s += ". Level ";
-    std::stringstream st;
-    st << level;
-    s += st.str();
-    
+    ss << level;
+    s += ss.str();
+    ss.str("");
+    ss.clear();
+
     s+= ". Early Date ";
-    std::stringstream sd;
-    sd << earlyDate;
-    s += sd.str();
+    ss << earlyDate;
+    s += ss.str();
+    ss.str("");
+    ss.clear();
+
     
     s+= ". Late Date ";
-    std::stringstream sp;
-    sp << lateDate;
-    s += sp.str();
+    ss << lateDate;
+    s += ss.str();
+    ss.str("");
+    ss.clear();
+
     
     s+= ". Margin ";
-    std::stringstream sde;
-    sde << margin;
-    s += sde.str();
+    ss << margin;
+    s += ss.str();
+    ss.str("");
+    ss.clear();
+
     
     s += ". Critical ";
-    std::stringstream sda;
-    sda << std::boolalpha << critical;
-    s += sda.str();
+    ss << std::boolalpha << critical;
+    s += ss.str();
+    ss.str("");
+    ss.clear();
+
 
     return s;
 }

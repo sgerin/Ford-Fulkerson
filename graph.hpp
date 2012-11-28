@@ -14,7 +14,7 @@
 class Graph{
 public:
     Graph();
-    Graph(char* file);
+    Graph(char* file, char* file2);
     Node* getAlpha();
     Node* getOmega();
     Node* getNode(std::string node);
