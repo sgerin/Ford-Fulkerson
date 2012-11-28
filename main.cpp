@@ -3,18 +3,18 @@
 
 int main(int argc, char **argv)
 {
-    if(argc == 2)
+    if(argc == 3)
     {
-        Graph* g = new Graph(argv[1]);
+        Graph* g = new Graph(argv[1], argv[2]);
         g->finish();
         g->displayGraph();
         std::cout << g->display() << std::endl;
     }
-    else if(argc == 3)
+    else if(argc == 4)
     {
-        Graph* g = new Graph(argv[1]);
+        Graph* g = new Graph(argv[1], argv[2]);
         g->finish();
-        std::ofstream output(argv[2]);
+        std::ofstream output(argv[3]);
         if(output)
         {
             output << g->display() << std::endl;
