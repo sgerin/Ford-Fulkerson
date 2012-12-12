@@ -10,6 +10,7 @@ Graph::Graph()
 Graph::Graph(char* nodes, char* res)
 {
     Node* node = NULL;
+    Resource resource = NULL;
     std::ifstream text;
     text.open(nodes);
     if(text.is_open())
@@ -81,6 +82,7 @@ Graph::Graph(char* nodes, char* res)
                 getline(text, line);
                 if(line.length() != 0)
                 {
+                    std::string name;
                     std::vector<std::string> x = split(line, ' ');
                     std::vector<std::string>::iterator it;
                     /*for (it = x.begin(); it < x.end(); it++)
@@ -100,7 +102,7 @@ Graph::Graph(char* nodes, char* res)
                             }
                             else
                             {
-                                std::cout << "It shouldn't happen : 1st line of file isn't just a nbr" << std::endl;
+                                std::cout << "It shouldn't happen : 1st line of file is just a nbr" << std::endl;
                             }
                         }
                     }
@@ -114,7 +116,16 @@ Graph::Graph(char* nodes, char* res)
                             }
                             else
                             {
-                                pred.push_back(*it);
+                                int res;
+                                std::stringstream ss;
+                                ss << *it;
+                                ss >> res;
+                                
+                                resource = new Resource(res);
+                                resources.insert(std::pair<int, Resource*>(res, resource));
+                                (this->getNode(name))->setResource(res);
+                                
+                                //pred.push_back(*it);
                             }
                         }
 

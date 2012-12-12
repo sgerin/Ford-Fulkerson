@@ -7,13 +7,14 @@ class Node;
 
 class Resource{
 public:
-    Resource(std::string);
-    Resource(std::string, Node* owner);
-    std::string getName();
+    Resource(int);
+    Resource(int, Node*);
+    int getNumber();
     Node* getOwner();
+    void setOwner(Node*);
     
 private:
-    std::string name;
+    int number;
     Node* owner;
 };
 

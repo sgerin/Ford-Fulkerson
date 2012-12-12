@@ -271,3 +271,14 @@ int Node::getSuccessorsLateDate()
     return late;
 
 }
+
+
+void Node::setResources(int i)
+{
+    this->resources.push_back(i);
+}
+
+std::vector<int> Node::getResources()
+{
+    return resource;
+}

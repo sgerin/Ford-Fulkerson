@@ -1,22 +1,22 @@
 #include "resource.hpp"
 #include "node.hpp"
 
-Resource::Resource(std::string s)
+Resource::Resource(int i)
 {
-    this->name = s;
+    this->number = i;
     this->owner = NULL; 
 }
 
-Resource::Resource(std::string s, Node* node)
+Resource::Resource(int i, Node* node)
 {
-    this->name = s;
+    this->number = i;
     this->owner = node;
 }
 
 
-std::string Resource::getName()
+int Resource::getNumber()
 {
-    return name;
+    return number;
 }
 
 
@@ -24,3 +24,7 @@ Node* Resource::getOwner()
 {
     return owner;
 }
+
+vois Resource:setOwner(Node* node)
+{
+    this->owner = node;

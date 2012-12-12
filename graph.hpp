@@ -9,7 +9,7 @@
 #include <map>
 #include <algorithm>
 #include "node.hpp"
-
+#include "resource.hpp"
 
 class Graph{
 public:
@@ -32,6 +32,7 @@ private:
     void earlyDate();
     void lateDate();
     void margin();
+    std::map<int, Resource*> resources;
 };
 
 

@@ -37,7 +37,8 @@ public:
     void setMargin(int i);
     bool isCritical();
     void setCritical(bool b);
-
+    void setResources(int i);
+    std::vector<int> getResources();
     
 private:
     std::string name;
@@ -52,6 +53,7 @@ private:
     std::vector<Node*> successors;
     unsigned int pred;
     unsigned int succ;
+    std::vector<int> resources; 
     Graph* graph;
 };
 
