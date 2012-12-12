@@ -67,10 +67,69 @@ Graph::Graph(char* nodes, char* res)
                 cost = 0;
                 pred.clear();                
             }
-            
-
-        }
+        }        
         text.close();
+        text.clear();
+        text.open(res);
+        if(text.is_open())
+        {
+            int i = 0;
+            int nb_res = 0;
+            while(text.good())
+            {
+                std::string line = "";
+                getline(text, line);
+                if(line.length() != 0)
+                {
+                    std::vector<std::string> x = split(line, ' ');
+                    std::vector<std::string>::iterator it;
+                    /*for (it = x.begin(); it < x.end(); it++)
+                    {
+                        std::cout << *it << "  ";
+                    }
+                    std::cout << std::endl;*/
+                    if(i == 0)
+                    {
+                        for (it = x.begin() ; it < x.end(); it++)
+                        {
+                            if(it - x.begin() == 0)
+                            {
+                                std::stringstream ss;
+                                ss << *it;
+                                ss >> nb_res;
+                            }
+                            else
+                            {
+                                std::cout << "It shouldn't happen : 1st line of file isn't just a nbr" << std::endl;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        for (it = x.begin() ; it < x.end(); it++)
+                        {
+                            if(it - x.begin() == 0)
+                            {
+                                name = *it;
+                            }
+                            else
+                            {
+                                pred.push_back(*it);
+                            }
+                        }
+
+                    }
+                    
+                }
+                i++;
+            }
+        }
+        else
+        {
+            std::cout << "Resources file couldn't be opened" << std::endl;
+            exit(0);
+        }
+
     }
     else
     {
